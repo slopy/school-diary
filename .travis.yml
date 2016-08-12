@@ -1,6 +1,16 @@
 rvm:
   - 2.2.3
+env: 
+  - RAILS_ENV=test
 before_script:
-  - psql -c 'create database workshops_test;' -U postgres
+  - bundle exec rake db:test:prepare --trace
 addons:
   postgresql: '9.3'
+deploy:
+  provider: heroku
+  api_key:
+    secure: vxi/iPUpOIK+SIUPgzwevjiW1YsHoIpXY60jAmUalW7EaTca1xIsJ22I8CedIonWTvbFy6xwy2Ef1pnRmW0/6tDLKu8Cg2jy50DlfMvxqc/F0FExEgPi2SLaqcBfWG3XwaKQU/aIuXlU/yZRf/66e8kO6nBuGYhN2PUtYXe6GBJ43J7cj341N4YcRIwNokO1CII8ktZzLyGkszRlQ1IRULgGjxCLrnHGrrhGljBWZVg9PDYqAC2iwoh6/wqHw5/G+OGjkvM9yERfG26BVA0sKDaeqERuUcqMYmbpZN2xRZP/PBiyzjEsCH2Ki7tndUf16+HFXrMjqznzOmT7WNGq/0A1UWJtuY/vT8W3knwPrxdvqPDnE/KtZoX1z1sT3siMax8a5Qr5ecW9qTNC1KHhvA992HfkHQ4YGa6AiegobxE7MyQjNcCWTZkMWS9Jv8/D4UbF1g5ftEmRCMzCGmmCUap0T/DMjefMtbOlQzL91h1ppK3s2pN8/DWqPcDb05xULuKvTHI89d+Suma+EGp1WbSIRpJce2xjpbBU0JbhcjQi8V6fDcc8V9T8OtuvduPAAM1HYX22zGiE2sra0Ymjof7TqC7Dwl3CfCmAZkm/iBisd9SUC0e+jADre78HapCe9Vu90CpJpCvS7bSRmNViV8Dvn5/r/0MmgxXTU69c7lQ=
+  app: slopy-school-diary
+  on:
+    repo: slopy/school-diary
+    branch: develop
