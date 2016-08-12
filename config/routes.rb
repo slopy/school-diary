@@ -3,9 +3,11 @@ Rails.application.routes.draw do
 
   resources :teachers
   resources :visitors, only: :index
-  resources :reports do
-    get :subjects, on: :collection
-  end
+  resources :reports
+
+  get 'report/subjects', to: 'reports#subjects',
+                         as: :report_subjects
+
   resources :students do
     get :subjects
   end
