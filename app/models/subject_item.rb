@@ -1,5 +1,6 @@
 class SubjectItem < ActiveRecord::Base
   belongs_to :teacher
+  belongs_to :student
 
   has_many :participations, dependent: :destroy
   has_many :students, through: :participations
