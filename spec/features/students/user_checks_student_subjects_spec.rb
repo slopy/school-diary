@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'User checks student subjects' do
   let!(:student) { create :student, first_name: 'Jan', last_name: 'Nowak' }
-  let!(:subject_item) { create :subject_item, title: 'Math' }
+  let!(:subject_item) { create :subject_item, title: 'Math', student: student }
   let!(:participant) { create :participation, student: student, subject_item: subject_item }
   let!(:subject_item_note) { create :subject_item_note, subject_item: subject_item, student: student }
 
