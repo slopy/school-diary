@@ -3,4 +3,11 @@ class ReportsController < ApplicationController
 
   def subjects
   end
+
+  def payments
+  end
+
+  def students_datatable
+  end
+
 end
