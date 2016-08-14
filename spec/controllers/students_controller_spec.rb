@@ -59,8 +59,11 @@ RSpec.describe StudentsController do
     let!(:student) { create :student, first_name: 'John', last_name: 'Smith' }
     let(:first_name) { 'Walter' }
     let(:last_name) { 'White' }
+    let(:birthdate) { Date.new(1992,01,02) }
+
     let!(:params) do
-      { id: student.id, student: { first_name: first_name } }
+      { id: student.id, student: { first_name: first_name,
+                                   birthdate: birthdate.strftime("%Y-%m_%d") } }
     end
     subject { put :update, params }
 
@@ -75,6 +78,7 @@ RSpec.describe StudentsController do
       context 'updates student' do
         subject { -> { put :update, params } }
         it { is_expected.to change{ student.reload.first_name }.to(first_name) }
+        it { is_expected.to change{ student.reload.birthdate }.to(birthdate) }
       end
     end
 

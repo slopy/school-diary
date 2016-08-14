@@ -27,6 +27,13 @@ class StudentsController < ApplicationController
   private 
 
   def student_params
-    params.require(:student).permit(:first_name, :last_name, subject_item_ids: [])
+    parse_birthdate_format
+    params.require(:student).permit(:first_name, :last_name, :birthdate, subject_item_ids: [])
+  end
+
+  def parse_birthdate_format
+    if params[:student] && params[:student][:birthdate]
+      params[:student][:birthdate].gsub!("_",'-')
+    end
   end
 end
