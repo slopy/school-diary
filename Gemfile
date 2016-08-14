@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.2.3'
 
 gem 'bootstrap-sass'
+gem 'bootstrap-datepicker-rails'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'decent_exposure'
 gem 'devise'
@@ -45,6 +46,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem "capybara-webkit"
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
