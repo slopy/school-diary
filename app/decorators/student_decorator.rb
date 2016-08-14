@@ -16,4 +16,8 @@ class StudentDecorator < BaseDecorator
       format("%.2f",0)
     end
   end
+
+  def birthdate
+    object.birthdate.try(:strftime, "%Y-%m_%d")
+  end
 end

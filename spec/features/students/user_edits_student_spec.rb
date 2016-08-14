@@ -43,3 +43,26 @@ feature 'User edits student' do
     expect(page).to have_content 'Jan Abacki'
   end
 end
+
+feature 'User edits student birthdate' do
+  let!(:student) { create :student, first_name: 'Jan', last_name: 'Abacki' }
+  let!(:subject_item) { create :subject_item, title: 'Math' }
+
+  scenario 'with datepicker', js: true do
+    user = build(:user)
+    sign_up_with user.email, user.password
+
+    expect(page).to have_content('Logout')
+
+    visit students_path
+    find(:xpath, "//a[@title='edit']").click
+
+    expect(page).to have_content "RoR Workhops » Students  » #{student.decorate.full_name}"
+
+    page.execute_script("$('.form_datetime').datepicker('update', '1992-02_01');")
+
+    click_button 'Update Student'
+    expect(page).to have_content '1992-02_01'
+  end
+  
+end
