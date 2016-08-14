@@ -16,3 +16,11 @@
 #= require bootstrap-sprockets
 #= require bootstrap-datepicker
 #= require_tree . 
+
+$(document).on 'ready page:load', ->
+  $('.form_datetime').datepicker({
+    autoclose: true,
+    orientation: "bottom left",
+    format: 'yyyy-mm_dd',
+    container: '.form_datetime'
+  });
