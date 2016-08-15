@@ -2,7 +2,7 @@ class Student < ActiveRecord::Base
   has_many :participations, dependent: :destroy
   has_many :subject_item_notes, dependent: :destroy
   has_many :subject_items, through: :participations
-  has_many :payments
+  has_many :payments, -> { joins(:payment_date).order('payment_dates.scheduled_at') }
   has_many :payments_dates, through: :payments
 
   validates :first_name, :last_name, presence: true
