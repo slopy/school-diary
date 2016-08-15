@@ -8,6 +8,9 @@ class ReportsController < ApplicationController
   end
 
   def students_datatable
+    respond_to do |format|
+      format.json {render json: StudentsDatatable.new(view_context) }
+    end
   end
 
 end
