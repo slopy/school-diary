@@ -4,4 +4,6 @@ class Payment < ActiveRecord::Base
 
   validates :student, :payment_date, presence: true
   validates :payment_date, uniqueness: { scope: :student }
+
+  delegate :scheduled_at, to: :payment_date
 end
