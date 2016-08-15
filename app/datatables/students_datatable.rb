@@ -35,7 +35,7 @@ private
   end
 
   def fetch_students
-    students = Student.joins(payments: [:payment_date])
+    students = Student.includes(:payments)
     students = students.order("#{sort_column} #{sort_direction}") if sort_column
     students = students.page(page).per_page(per_page)
     if params[:sSearch].present?
