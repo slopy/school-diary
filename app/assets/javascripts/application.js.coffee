@@ -26,3 +26,11 @@ $(document).on 'ready page:load', ->
     format: 'yyyy-mm_dd',
     container: '.form_datetime'
   });
+
+
+  $('#students').dataTable
+    sPaginationType: "full_numbers"
+    bJQueryUI: true
+    bProcessing: true
+    bServerSide: true
+    sAjaxSource: $('#students').data('source')
