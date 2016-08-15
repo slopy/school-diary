@@ -3,4 +3,14 @@ class ReportsController < ApplicationController
 
   def subjects
   end
+
+  def payments
+  end
+
+  def students_datatable
+    respond_to do |format|
+      format.json {render json: StudentsDatatable.new(view_context) }
+    end
+  end
+
 end
