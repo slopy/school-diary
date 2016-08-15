@@ -2,6 +2,12 @@ puts "Seeds: start"
 TEACHER_TITLES = %w(Dr. Prof. TA)
 User.create!(email: 'admin@admin.com',password: 'adminadmin')
 
+number_of_months = 1..12
+now = Date.today
+number_of_months.to_a.each do |month|
+  PaymentDate.create(scheduled_at: Date.new(now.year, month, 1))
+end
+
 3.times do
   Teacher.create!(
     first_name: Faker::Name.first_name,
@@ -23,6 +29,11 @@ end
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name
   )
+end
+
+Payment.all.each do |payment|
+  payment.paid_at = payment.payment_date.scheduled_at + rand(1..20).days
+  [true,false].sample ? payment.save : nil
 end
 
 students = Student.all
