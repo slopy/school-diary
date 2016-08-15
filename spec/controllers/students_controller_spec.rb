@@ -91,6 +91,7 @@ RSpec.describe StudentsController do
 
   describe 'DELETE #destroy' do
     let!(:student) { create :student }
+    let!(:payment_date) { create :payment_date }
     subject { delete :destroy, id: student.id }
 
     it { is_expected.to redirect_to students_path }
